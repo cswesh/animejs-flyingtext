@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Flying Text Animation using Anime JS</title>
+</head>
+<body>
+    <section>
+        <p class="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ab non numquam optio vel aspernatur, illo deserunt! Expedita, repellat voluptatibus vitae libero voluptatem fuga quo consequuntur sint esse at reprehenderit, temporibus dolorem, voluptatum molestias laboriosam! Iusto atque doloremque ut. Eum impedit optio suscipit labore id reiciendis molestias obcaecati. Animi ea repellat reiciendis adipisci in nemo laborum repellendus cum asperiores officia! Commodi quisquam reprehenderit earum maxime at quam aperiam consequuntur dolore sed. Repellendus illum cumque debitis neque temporibus quibusdam possimus ad perferendis quos consequatur excepturi consectetur consequuntur laboriosam rem doloribus, repellat facilis. Facere modi temporibus eum nam? Deserunt similique inventore voluptatem explicabo sit iste necessitatibus molestiae. Repellat accusantium error voluptatem animi saepe nobis ea! Vel eligendi dolor veritatis nulla dolorem similique ipsa hic asperiores aut eveniet? Minus debitis qui quod, beatae, similique modi velit consequatur veniam inventore in pariatur rerum. Ratione exercitationem eveniet eligendi officia totam dolorum quibusdam sequi deserunt quod.
+        </p>
+    </section>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous"></script>
+    <script>
+        const text = document.querySelector('.text');
+        text.innerHTML = text.textContent.replace(/\S/g,"<span>$&</span>");
+
+        const animation = anime.timeline({
+            targets:'.text span',
+            easing : 'easeInOutExpo',
+            loop:true,
+        });
+
+        animation
+        .add({
+            rotate: function(){
+                return anime.random(-360,360)
+            },
+            translateX: function(){
+                return anime.random(-500,500)
+            },
+            translateY: function(){
+                return anime.random(-500,500)
+            },
+            duration:5000,
+            delay:anime.stagger(20),
+        })
+
+        .add({
+            rotate: 0,
+            translateX: 0,
+            translateY: 0,
+            duration:5000,
+            delay:anime.stagger(20),
+        })
+    </script>
+</body>
+</html>
